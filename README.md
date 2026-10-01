@@ -23,6 +23,40 @@ test/              local copy of Gumroad's page environment + QA suite
 
 Preview and publish need two things the build session did not have: network access to `gumroad.com` (the environment's network policy refused it, on a retry as well) and a token for your account. Everything else was verified locally. Nothing has been published.
 
+## Run it on your computer
+
+You need Git and Node 18 or newer. Nothing else is required to see the page.
+
+**macOS or Linux**
+```bash
+mkdir -p ~/Desktop/themobader-profile && cd ~/Desktop/themobader-profile
+git clone --branch claude/youthful-volta-irhy8w https://github.com/MohdAlShwaiki/gumroad.git .
+npm run demo
+open test/out/preview.html        # on Linux: xdg-open test/out/preview.html
+```
+
+**Windows (PowerShell)**
+```powershell
+mkdir "$HOME\Desktop\themobader-profile"; cd "$HOME\Desktop\themobader-profile"
+git clone --branch claude/youthful-volta-irhy8w https://github.com/MohdAlShwaiki/gumroad.git .
+npm run demo
+start test\out\preview.html
+```
+If your Desktop is synced by OneDrive, use `$HOME\OneDrive\Desktop` instead.
+
+`npm run demo` rebuilds the page and writes `test/out/preview.html`: the real page with sample products and prices (a red banner says so) and a stand-in for the follow form. Open it and try the theme toggle, the goal buttons, the menu on a narrow window, and the email form. After editing anything in `src/` or `config/`, run `npm run demo` again and refresh.
+
+Opening `dist/landing.html` directly shows a "products could not load" message. That is intended: products only exist once Gumroad renders the page, so use the preview file locally.
+
+**Run the automated tests (optional)**
+```bash
+npm install
+npx playwright install chromium
+npm run qa:quick      # about 1 minute
+npm run qa            # full run, 9 widths in both themes, about 7 minutes
+```
+Without a checkout of Gumroad's source the sanitizer step is skipped and the unsanitized build is tested.
+
 ## Finish in four steps
 
 1. **Pin your two featured products.** Run `gumroad products list` and put the last part of each product URL into `config/site.json` under `featured.book.permalink` and `featured.course.permalink`. Optional but recommended: pinned cards also work without JavaScript and show Gumroad's live price in search results. Without pins, the page matches products by name.

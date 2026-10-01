@@ -7,13 +7,16 @@
   "scripts": {
     "build": "node build.mjs",
     "build:strict": "node build.mjs --strict",
+    "demo": "node build.mjs && node test/make-preview.mjs",
     "sanitize": "ruby tools/sanitize.rb dist/landing.html",
     "qa": "node test/qa.mjs",
+    "qa:quick": "node test/qa.mjs --quick",
     "preview": "gumroad pages preview dist/landing.html --json --no-input",
     "golive": "gumroad pages push profile dist/landing.html --json --no-input"
   },
   "devDependencies": {
     "axe-core": "^4.13.0",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "playwright": "1.56.1"
   }
 }

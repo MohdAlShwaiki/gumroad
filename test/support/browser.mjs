@@ -2,8 +2,19 @@ import { createRequire } from 'node:module';
 import { existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 
-const require = createRequire(process.env.PLAYWRIGHT_MODULES || '/opt/node22/lib/node_modules/');
-export const { chromium } = require('playwright');
+import { fileURLToPath } from 'node:url';
+import { join, dirname } from 'node:path';
+
+// Find Playwright: PLAYWRIGHT_MODULES override, then this project's node_modules, then a global install.
+const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
+function loadPlaywright() {
+  const roots = [process.env.PLAYWRIGHT_MODULES, repoRoot + '/', '/opt/node22/lib/node_modules/'].filter(Boolean);
+  for (const root of roots) {
+    try { return createRequire(root)('playwright'); } catch { /* try the next location */ }
+  }
+  throw new Error('Playwright not found. Run: npm install && npx playwright install chromium');
+}
+export const { chromium } = loadPlaywright();
 
 /**
  * Launch Chromium. In sandboxes that inspect HTTPS through a proxy CA, trust exactly that CA by its
