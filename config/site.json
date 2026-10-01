@@ -1,0 +1,35 @@
+{
+  "_readme": "Everything editable lives here. Nothing in src/ needs touching for routine updates. Product names, prices, links and images are NOT stored here: they come live from Gumroad at render time.",
+
+  "brand": {
+    "name": "theMoBader",
+    "creator": "Mohammad Bader",
+    "creatorAr": "محمد بدر",
+    "tagline": "تعلّم. ابنِ. طوّر. حوّل مهاراتك إلى قيمة."
+  },
+
+  "social": {
+    "_note": "Leave a value empty to hide that link. Only add URLs you have verified. They open in a new tab.",
+    "instagram": "",
+    "youtube": "",
+    "linkedin": "",
+    "website": ""
+  },
+
+  "featured": {
+    "_note": "Which catalogue products fill the two featured cards. 'permalink' (the last part of the product URL) pins a product exactly. If empty, the page matches by name. A card with no match stays hidden, and the product still appears under the other products.",
+    "book":   { "permalink": "", "match": ["من الصفر إلى أول عميل"] },
+    "course": { "permalink": "", "match": ["ابنِ نظام العمل الحر"] }
+  },
+
+  "historicalResults": {
+    "_note": "Supplied by Mohammad. Confirm both figures are still accurate before publishing. Set show to false to hide the block. They are framed as past results, never as a guarantee.",
+    "show": true,
+    "trained": 380,
+    "firstClient": 362,
+    "context": "في برنامج تدريبي في الأردن"
+  },
+
+  "testimonials": [],
+  "_testimonialsNote": "Real quotes only. Each item needs a quote and a name, and may add a context and a result. When the list is empty, no testimonial UI is rendered."
+}

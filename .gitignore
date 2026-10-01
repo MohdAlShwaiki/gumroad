@@ -1,0 +1,4 @@
+node_modules/
+dist/*.sanitized.html
+test/out/
+.DS_Store

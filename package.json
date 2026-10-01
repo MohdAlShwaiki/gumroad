@@ -1,0 +1,19 @@
+{
+  "name": "themobader-gumroad-profile",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Custom Gumroad profile landing page for theMoBader (Arabic, RTL, light and dark).",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:strict": "node build.mjs --strict",
+    "sanitize": "ruby tools/sanitize.rb dist/landing.html",
+    "qa": "node test/qa.mjs",
+    "preview": "gumroad pages preview dist/landing.html --json --no-input",
+    "golive": "gumroad pages push profile dist/landing.html --json --no-input"
+  },
+  "devDependencies": {
+    "axe-core": "^4.13.0",
+    "tailwindcss": "^4.3.3"
+  }
+}
